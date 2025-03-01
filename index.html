@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مشغل فيديو شامل</title>
     
+    <!-- بيانات الفيلم -->
+    <script>
+        var movieData = {
+            title: "John Wick: Chapter 4",
+            duration: "169",
+            poster: "https://m.media-amazon.com/images/M/MV5BN2I4MTBjNzYtM2RlNC00ZDA4LTk3N2YtMTEyNjk3ZTc4MDlhXkEyXkFqcGdeQXVyMTUyNjc3NDQ4._V1_.jpg",
+            video: "https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8"
+        };
+    </script>
+    
     <!-- Video.js -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
@@ -23,8 +33,7 @@
     <h2>مشغل فيديو شامل 🎬</h2>
     <div class="player-container">
         <!-- مشغل Video.js -->
-        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto"
-            poster="https://m.media-amazon.com/images/M/MV5BMjA2OTYwNTM3Nl5BMl5BanBnXkFtZTgwMDU3NjEwNzE@._V1_.jpg">
+        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto">
             <source id="video-source" type="application/x-mpegURL">
             <track kind="subtitles" src="subtitles.vtt" srclang="ar" label="العربية">
         </video>
@@ -32,7 +41,8 @@
 
     <script>
         var video = document.getElementById('video-player');
-        var videoSrc = "https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8";
+        var videoSrc = movieData.video;
+        video.poster = movieData.poster;
 
         if (Hls.isSupported()) {
             var hls = new Hls();

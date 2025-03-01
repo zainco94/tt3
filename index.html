@@ -1,11 +1,52 @@
-<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
-<mux-player
-  stream-type="on-demand"
-  playback-id="https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8"
-  metadata-video-title="Test VOD"
-  metadata-viewer-user-id="user-id-007"
-  controls
-  autoplay
-  muted
-  style="max-width: 100%;"
-></mux-player>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشغل فيديو شامل</title>
+    
+    <!-- Video.js -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-http-streaming/3.12.2/videojs-http-streaming.min.js"></script>
+    
+    <!-- HLS.js (لضمان تشغيل M3U8) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.0/hls.min.js"></script>
+    
+    <style>
+        body { text-align: center; background-color: #222; color: white; }
+        .player-container { max-width: 800px; margin: auto; padding: 20px; }
+        video { width: 100%; border-radius: 10px; }
+    </style>
+</head>
+<body>
+    <h2>مشغل فيديو شامل 🎬</h2>
+    <div class="player-container">
+        <!-- مشغل Video.js -->
+        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto"
+            poster="https://m.media-amazon.com/images/M/MV5BMjA2OTYwNTM3Nl5BMl5BanBnXkFtZTgwMDU3NjEwNzE@._V1_.jpg">
+            <source id="video-source" type="application/x-mpegURL">
+            <track kind="subtitles" src="subtitles.vtt" srclang="ar" label="العربية">
+        </video>
+    </div>
+
+    <script>
+        var video = document.getElementById('video-player');
+        var videoSrc = "https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8";
+
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function() {
+                video.play();
+            });
+        }
+    </script>
+</body>
+</html>

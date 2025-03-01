@@ -33,29 +33,38 @@
     <h2>مشغل فيديو شامل 🎬</h2>
     <div class="player-container">
         <!-- مشغل Video.js -->
-        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto">
-            <source id="video-source" type="application/x-mpegURL">
+        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" poster="">
+            <source id="video-source" src="" type="application/x-mpegURL">
             <track kind="subtitles" src="subtitles.vtt" srclang="ar" label="العربية">
         </video>
     </div>
 
     <script>
         var video = document.getElementById('video-player');
+        var source = document.getElementById('video-source');
         var videoSrc = movieData.video;
         video.poster = movieData.poster;
-
+        source.src = videoSrc;
+        
         if (Hls.isSupported()) {
             var hls = new Hls();
             hls.loadSource(videoSrc);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play();
+                console.log("فيديو جاهز للتشغيل!");
+                video.play().catch(error => console.error("فشل تشغيل الفيديو تلقائيًا:", error));
+            });
+            hls.on(Hls.Events.ERROR, function(event, data) {
+                console.error("حدث خطأ في تحميل الفيديو:", data);
             });
         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = videoSrc;
             video.addEventListener('loadedmetadata', function() {
-                video.play();
+                console.log("تم تحميل بيانات الفيديو، جاري التشغيل...");
+                video.play().catch(error => console.error("فشل تشغيل الفيديو تلقائيًا:", error));
             });
+        } else {
+            console.error("المتصفح لا يدعم تشغيل M3U8.");
         }
     </script>
 </body>

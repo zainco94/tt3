@@ -15,57 +15,36 @@
         };
     </script>
     
-    <!-- Video.js -->
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-http-streaming/3.12.2/videojs-http-streaming.min.js"></script>
-    
-    <!-- HLS.js (لضمان تشغيل M3U8) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.0/hls.min.js"></script>
+    <!-- MUX Player -->
+    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
     
     <style>
         body { text-align: center; background-color: #222; color: white; }
         .player-container { max-width: 800px; margin: auto; padding: 20px; }
-        video { width: 100%; border-radius: 10px; }
+        mux-player { width: 100%; border-radius: 10px; }
     </style>
 </head>
 <body>
     <h2>مشغل فيديو شامل 🎬</h2>
     <div class="player-container">
-        <!-- مشغل Video.js -->
-        <video id="video-player" class="video-js vjs-default-skin" controls preload="auto" poster="">
-            <source id="video-source" src="" type="application/x-mpegURL">
-            <track kind="subtitles" src="subtitles.vtt" srclang="ar" label="العربية">
-        </video>
+        <!-- مشغل MUX -->
+        <mux-player 
+            id="mux-video-player"
+            stream-type="on-demand"
+            playback-id="" 
+            metadata-video-title="John Wick: Chapter 4" 
+            metadata-viewer-user-id="user-id-007"
+            controls
+            autoplay
+            muted
+            poster="">
+        </mux-player>
     </div>
 
     <script>
-        var video = document.getElementById('video-player');
-        var source = document.getElementById('video-source');
-        var videoSrc = movieData.video;
-        video.poster = movieData.poster;
-        source.src = videoSrc;
-        
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                console.log("فيديو جاهز للتشغيل!");
-                video.play().catch(error => console.error("فشل تشغيل الفيديو تلقائيًا:", error));
-            });
-            hls.on(Hls.Events.ERROR, function(event, data) {
-                console.error("حدث خطأ في تحميل الفيديو:", data);
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() {
-                console.log("تم تحميل بيانات الفيديو، جاري التشغيل...");
-                video.play().catch(error => console.error("فشل تشغيل الفيديو تلقائيًا:", error));
-            });
-        } else {
-            console.error("المتصفح لا يدعم تشغيل M3U8.");
-        }
+        var muxPlayer = document.getElementById('mux-video-player');
+        muxPlayer.setAttribute('playback-id', movieData.video);
+        muxPlayer.setAttribute('poster', movieData.poster);
     </script>
 </body>
 </html>

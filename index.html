@@ -1,7 +1,29 @@
+<!-- CSS الخاص بـ Video.js -->
 <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
-<video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
-  <source src="https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8" type="application/x-mpegURL">
+<!-- مكتبات Video.js -->
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-http-streaming/3.12.2/videojs-http-streaming.min.js"></script>
+
+<!-- مشغل الفيديو -->
+<video id="my-video" class="video-js vjs-default-skin" controls preload="auto" width="640" height="360" poster="https://m.media-amazon.com/images/M/MV5BMjA2OTYwNTM3Nl5BMl5BanBnXkFtZTgwMDU3NjEwNzE@._V1_.jpg">
+    <source src="https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5e51994b/web184.faselhd.cafe/master.m3u8" type="application/x-mpegURL">
 </video>
 
+<!-- كود JavaScript لتشغيل Video.js ودعم M3U8 -->
+<script>
+  var player = videojs('my-video', {
+      techOrder: ["html5", "hls"],
+      fluid: true
+  });
+</script>
+
+<!-- بيانات الفيلم بصيغة JSON -->
+<script type="application/json" id="movie-data">
+{
+    "title": "The Equalizer 3",
+    "duration": "109",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjA2OTYwNTM3Nl5BMl5BanBnXkFtZTgwMDU3NjEwNzE@._V1_.jpg",
+    "video": "https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5e51994b/web184.faselhd.cafe/master.m3u8"
+}
+</script>

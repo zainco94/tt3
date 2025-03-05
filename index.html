@@ -3,48 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشغل فيديو شامل</title>
+    <title>اسم الفيلم</title>
     
-    <!-- بيانات الفيلم -->
-    <script>
-        var movieData = {
-            title: "John Wick: Chapter 4",
-            duration: "169",
-            poster: "https://m.media-amazon.com/images/M/MV5BN2I4MTBjNzYtM2RlNC00ZDA4LTk3N2YtMTEyNjk3ZTc4MDlhXkEyXkFqcGdeQXVyMTUyNjc3NDQ4._V1_.jpg",
-            video: "https://master.c.scdns.io/stream/v2/CjG1UBKDcLpNC3QvonnIMQ/1740833259/normal/0/154.182.225.13/no/dd3272af8f5f94fc03fc8a8e5e51994b/web184.faselhd.cafe/master.m3u8"
-        };
-    </script>
-    
-    <!-- MUX Player -->
-    <script src="https://cdn.jsdelivr.net/npm/@mux/mux-player"></script>
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="اسم الفيلم">
+    <meta property="og:image" content="https://media0070.elcinema.com/uploads/_640x_0ab5d5c86c6faf1f0de9b6eea920ef29c124c76f37783730194906a1c91fd9bd.jpg">
+    <meta property="og:description" content="وصف الفيلم">
+    <meta property="og:type" content="video.movie">
+    <meta property="og:url" content="https://aflam-cdn-cash-32-r3d.dialymotion.online/yh5chg6qptikjnl75zekr6jswszz6ra2wrp3mk4tans67h55enbcz75qqkzq/v.mp4">
     
     <style>
-        body { text-align: center; background-color: #222; color: white; }
-        .player-container { max-width: 800px; margin: auto; padding: 20px; }
-        mux-player { width: 100%; border-radius: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <h2>مشغل فيديو شامل 🎬</h2>
-    <div class="player-container">
-        <!-- مشغل MUX -->
-        <mux-player 
-            id="mux-video-player"
-            stream-type="on-demand"
-            playback-id="" 
-            metadata-video-title="John Wick: Chapter 4" 
-            metadata-viewer-user-id="user-id-007"
-            controls
-            autoplay
-            muted
-            poster="">
-        </mux-player>
+    <div class="container">
+        <h1>اسم الفيلم</h1>
+        <img src="رابط البوستر" alt="بوستر الفيلم">
+        <p>وصف الفيلم</p>
+        <a href="رابط الفيلم" target="_blank">مشاهدة الفيلم</a>
     </div>
-
-    <script>
-        var muxPlayer = document.getElementById('mux-video-player');
-        muxPlayer.setAttribute('playback-id', movieData.video);
-        muxPlayer.setAttribute('poster', movieData.poster);
-    </script>
 </body>
 </html>

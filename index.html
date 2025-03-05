@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dfsdf</title>
+    <title>فيلم تجريبي</title>
     
     <!-- OpenGraph Meta Tags -->
-    <meta property="og:title" content="asdasd">
+    <meta property="og:title" content="فيلم تجريبي">
     <meta property="og:image" content="https://media0070.elcinema.com/uploads/_640x_0ab5d5c86c6faf1f0de9b6eea920ef29c124c76f37783730194906a1c91fd9bd.jpg">
     <meta property="og:description" content="فيلم درامي مشوق مليء بالإثارة والتشويق.">
     <meta property="og:type" content="video.movie">
@@ -20,7 +20,7 @@
     {
         "@context": "https://schema.org",
         "@type": "Movie",
-        "name": "asdasd",
+        "name": "فيلم تجريبي",
         "image": "https://media0070.elcinema.com/uploads/_640x_0ab5d5c86c6faf1f0de9b6eea920ef29c124c76f37783730194906a1c91fd9bd.jpg",
         "description": "فيلم درامي مشوق مليء بالإثارة والتشويق.",
         "url": "https://aflam-cdn-cash-32-r3d.dialymotion.online/yh5chg6qptikjnl75zekr6jswszz6ra2wrp3mk4tans67h55enbcz75qqkzq/v.mp4",
@@ -33,6 +33,25 @@
         "datePublished": "2025-01-01",
         "genre": "دراما"
     }
+    </script>
+    
+    <script src="https://cdn.jwplayer.com/libraries/your-library-key.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            jwplayer("video-container").setup({
+                file: "https://aflam-cdn-cash-32-r3d.dialymotion.online/yh5chg6qptikjnl75zekr6jswszz6ra2wrp3mk4tans67h55enbcz75qqkzq/v.mp4",
+                image: "https://media0070.elcinema.com/uploads/_640x_0ab5d5c86c6faf1f0de9b6eea920ef29c124c76f37783730194906a1c91fd9bd.jpg",
+                width: "100%",
+                height: "100%",
+                stretching: "exactfit",
+                duration: 86400,
+                preload: 'auto',
+                androidhls: true,
+                hlshtml: true,
+                primary: "html5",
+                startparam: "start"
+            });
+        });
     </script>
     
     <style>
@@ -53,7 +72,7 @@
             max-width: 100%;
             border-radius: 10px;
         }
-        video {
+        #video-container {
             width: 100%;
             height: auto;
             border-radius: 10px;
@@ -66,10 +85,7 @@
         <h1>فيلم تجريبي</h1>
         <img src="https://media0070.elcinema.com/uploads/_640x_0ab5d5c86c6faf1f0de9b6eea920ef29c124c76f37783730194906a1c91fd9bd.jpg" alt="بوستر الفيلم">
         <p>فيلم درامي مشوق مليء بالإثارة والتشويق.</p>
-        <video controls preload="auto">
-            <source src="https://aflam-cdn-cash-32-r3d.dialymotion.online/yh5chg6qptikjnl75zekr6jswszz6ra2wrp3mk4tans67h55enbcz75qqkzq/v.mp4" type="video/mp4">
-            متصفحك لا يدعم تشغيل الفيديو.
-        </video>
+        <div id="video-container"></div>
         <br>
         <a href="https://aflam-cdn-cash-32-r3d.dialymotion.online/yh5chg6qptikjnl75zekr6jswszz6ra2wrp3mk4tans67h55enbcz75qqkzq/v.mp4" target="_blank">مشاهدة الفيلم</a>
     </div>
